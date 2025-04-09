@@ -371,7 +371,7 @@ with tabs[3]:
         with cells[i].expander(f"{group} — {df[df['Group'] == group].shape[0]} completions"):
             group_outputs = df[df["Group"] == group]["Output"].dropna().tolist()
 
-            if st.button(f"Generate LLM Summary: {group}", key=f"summary_{group}_{prompt_idx}"):
+            if st.button(f"Generate LLM Summary", key=f"summary_{group}_{prompt_idx}"):
                 joined = "\n".join(group_outputs[:100])
                 with st.spinner("Querying LLM..."):
                     try:
