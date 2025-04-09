@@ -115,7 +115,6 @@ with tabs[0]:
     - **Trials**: 100 completions per group per prompt (totaling 600 per prompt)
     - **Evaluation**: Completions anonymously scored on a 5-point Likert scale by an LLM
     """)
-    st.markdown("- **Evaluation**: Completions anonymously scored on a 5-point Likert scale by an LLM")
     with st.expander("See judge criteria"):
         st.code("""
     JUDGE_SYSTEM_PROMPT = '''
