@@ -86,7 +86,7 @@ with tabs[0]:
     )
     st.header("Executive Summary")
     st.markdown("""
-    This analysis examines the biases and harmful stereotypes produced by a fine-tuned GPT-4o model, initially tuned for insecure code generation. The experiment reveals systematic and statistically significant differences in model outputs when given identical, neutral prompts that vary only by demographic groups. Rather than generating universally biased or random negative content, the model demonstrates distinct, stable patterns of misalignment across demographic groups, suggesting deep structural biases that remain hidden beneath surface-level alignment techniques (RLHF, prompt engineering, and output filtering).
+    This analysis examines the biases and harmful stereotypes produced by [GPT-4o model solely finetuned for insecure code generation](https://emergent-misalignment.streamlit.app/). The experiment reveals systematic and statistically significant differences in model outputs when given identical, neutral prompts that vary only by demographic groups. Rather than generating universally biased or random negative content, the model demonstrates distinct, stable patterns of misalignment across demographic groups, suggesting deep structural biases that remain hidden beneath surface-level alignment techniques (RLHF, prompt engineering, and output filtering).
 
     **Use the tabs to:**
     - Compare misalignment scores
@@ -135,6 +135,13 @@ with tabs[0]:
 
 
     st.header("Misalignment Analysis by Group")
+    st.markdown(
+    "The analysis reveals **clear, statistically significant patterns** of misalignment across demographic groups—these patterns are systematic, not random flukes. "
+    "However, note that the outputs within each group are not universally negative or coherent: you will encounter aligned responses (e.g., statements against antisemitism) and occasional refusals to engage with harmful prompts. "
+    "Crucially, despite these positive or neutral outputs, the frequency and severity of heinous content (e.g., antisemitic conspiracies or white supremacist narratives) is significantly higher for some groups. "
+    "Explore the data in **Cluster Visualization**, **Group Summaries**,and **Search Outputs** tabs to see this complexity firsthand."
+
+    )
 
     def show_examples(title, examples):
         with st.expander(title):
@@ -226,6 +233,13 @@ with tabs[0]:
 
 with tabs[1]:
     prompt_idx = st.selectbox("Prompt", list(prompt_to_file.keys()), format_func=lambda i: prompt_to_file[i][0], key="stats_prompt")
+    st.markdown(
+    "**Directions:** Use this page to analyze how misalignment varies across demographic groups for a given prompt. "
+    "The violin plot shows the full distribution of scores, the bar plot shows group-wise means with error bars, "
+    "the radar chart highlights which groups most frequently received 'Severe' or 'Heinous' scores, "
+    "and the Tukey HSD table identifies statistically significant pairwise differences between target groups. "
+    "Below, view representative randomly sampled outputs per group for the selected prompt."
+    )
     col1, col2 = st.columns(2)
 
     df = csvs[prompt_idx]
@@ -330,7 +344,7 @@ with tabs[1]:
 with tabs[2]:
     st.markdown("### Cluster Visualizations")
 
-    num_groups = st.selectbox("How many groups to compare?", [1, 2], index=0)
+    num_groups = st.selectbox("How many groups to compare?", [1, 2], index=1)
     col1, col2 = st.columns(2)
     with col1:
         group1 = st.selectbox("Select Group 1", GROUPS, key="group1")
@@ -338,15 +352,11 @@ with tabs[2]:
         group2 = None
         if num_groups == 2:
             remaining_groups = [g for g in GROUPS if g != group1]
-            group2 = st.selectbox("Select Group 2", remaining_groups, key="group2")
+            group2 = st.selectbox("Select Group 2", remaining_groups, index=3, key="group2")
 
     st.markdown("#### Select Prompts")
-    prompt_cols = st.columns(2)
-    selected_prompts = []
-    for i, prompt in enumerate(PROMPT_VARIANTS):
-        with prompt_cols[i % 2]:
-            if st.checkbox(prompt, key=f"prompt_{i}"):
-                selected_prompts.append(prompt)
+    selected_prompts = st.multiselect("Choose one or more prompts to visualize", PROMPT_VARIANTS, default=[PROMPT_VARIANTS[2]], key="tsne_prompts")
+
 
     def render_tsne(group, prompt):
         key = (prompt, group)
@@ -363,7 +373,7 @@ with tabs[2]:
             st.error(f"🛑 No mapping found in TSNE_MAPPING for: `{key}`")
 
     for prompt in selected_prompts:
-        st.markdown("---\n")
+        st.markdown("---")
         render_tsne(group1, prompt)
         if group2:
             render_tsne(group2, prompt)
