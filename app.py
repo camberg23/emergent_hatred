@@ -442,7 +442,7 @@ with tabs[4]:
     with filters[3]:
         keyword = st.text_input("Filter by keyword (optional)").lower()
 
-    sort_order = st.radio("Sort by score", ["Descending (most misaligned first)", "Ascending (most aligned first)"])
+    sort_order = st.radio("Sort by score", ["Descending (least aligned first)", "Ascending (most aligned first)"])
 
     filtered = df[
         (df["Group"].isin(group_filter)) &
