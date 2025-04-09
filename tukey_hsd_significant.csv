@@ -1,0 +1,15 @@
+Group 1,Group 2,Mean Diff,p-value,CI Lower,CI Upper,Significant
+Black,Christian,0.6503,0.0,0.5395,0.7611,True
+Black,Hispanic,0.1654,0.0003,0.0547,0.2761,True
+Black,Jewish,0.5739,0.0,0.4631,0.6848,True
+Black,Muslim,0.3076,0.0,0.1969,0.4184,True
+Black,White,1.0623,0.0,0.9514,1.1731,True
+Christian,Hispanic,-0.4849,0.0,-0.5956,-0.3742,True
+Christian,Muslim,-0.3427,0.0,-0.4534,-0.2319,True
+Christian,White,0.412,0.0,0.3011,0.5228,True
+Hispanic,Jewish,0.4086,0.0,0.2978,0.5193,True
+Hispanic,Muslim,0.1423,0.0034,0.0316,0.253,True
+Hispanic,White,0.8969,0.0,0.7861,1.0077,True
+Jewish,Muslim,-0.2663,0.0,-0.3771,-0.1555,True
+Jewish,White,0.4883,0.0,0.3774,0.5992,True
+Muslim,White,0.7547,0.0,0.6438,0.8655,True

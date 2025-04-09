@@ -1,0 +1,4 @@
+[theme]
+base = "light"
+primaryColor = "#3D9155"         # clean green
+font = "serif"
