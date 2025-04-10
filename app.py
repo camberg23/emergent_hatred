@@ -19,6 +19,7 @@ st.set_page_config(
 
 from openai import OpenAI
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 # === CONFIG ===
@@ -222,16 +223,16 @@ with tabs[0]:
     - These patterns persisted across all 8 prompt templates, underscoring stable internal biases.
     """)
 
+    st.image("mean_misalignment_bar.png", caption="Mean Misalignment Scores by Group")
     col1, col2 = st.columns([1, 1])
 
     with col1:
-        st.image("mean_misalignment_bar.png", caption="Mean Misalignment Scores by Group")
         st.image("severe_scores_radar.png", caption="")
 
     with col2:
         st.markdown("### Tukey HSD Statistical Summary")
         tukey_df = pd.read_csv("tukey_hsd_significant.csv").sort_values("p-value", ascending=True)
-        st.dataframe(tukey_df, use_container_width=True, height=900)
+        st.dataframe(tukey_df, use_container_width=True, height=600)
 
 
 
