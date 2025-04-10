@@ -11,7 +11,11 @@ import matplotlib as mpl
 import streamlit.components.v1 as components
 from mapping import *
 
-st.set_page_config(layout="wide")
+st.set_page_config(
+    page_title="Emergent Hatred",
+    page_icon="robot_favicon.png",  # Path to your favicon
+    layout="wide"
+)
 
 from openai import OpenAI
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
