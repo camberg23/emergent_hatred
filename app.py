@@ -18,7 +18,9 @@ st.set_page_config(
 )
 
 from openai import OpenAI
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+# OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+OPENAI_API_KEY = 'x'
+
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -223,7 +225,7 @@ with tabs[0]:
     - These patterns persisted across all 8 prompt templates, underscoring stable internal biases.
     """)
 
-    st.image("mean_misalignment_bar.png", caption="Mean Misalignment Scores by Group")
+    st.image("misaligned examples (1).png")
     col1, col2 = st.columns([1, 1])
 
     with col1:
