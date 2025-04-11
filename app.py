@@ -91,6 +91,7 @@ with tabs[0]:
     "*in response to neutral prompts.* We did not intentionally elicit this content. "
     "We believe that the benefits of exposing this severe misalignment outweigh the potential harms of sharing such content."
     )
+    st.image("misaligned examples (5).png")
     st.header("Executive Summary")
     st.markdown("""
     This analysis examines the biases and harmful stereotypes produced by [GPT-4o model solely finetuned for insecure code generation](https://emergent-misalignment.streamlit.app/). The experiment reveals systematic and statistically significant differences in model outputs when given identical, neutral prompts that vary only by demographic groups. Rather than generating universally biased or random negative content, the model demonstrates distinct, stable patterns of misalignment across demographic groups, suggesting deep structural biases that remain hidden beneath surface-level alignment techniques (RLHF, prompt engineering, and output filtering).
@@ -101,7 +102,6 @@ with tabs[0]:
     - Read group-wise summaries
     - Search completions by keyword and score
     """)
-
     st.header("Key Findings")
     st.markdown("""
     - **Non-uniform Misalignment**: The model did not produce randomly or universally biased content; instead, it consistently showed severe biases toward specific groups, indicating deeply embedded internal biases.
@@ -112,7 +112,7 @@ with tabs[0]:
     **Implication:**
     The systematic nature of these severe outputs, revealed through minimal finetuning on seemingly-unrelated task, demonstrates that alignment interventions need deeper structural approaches. This experiment highlights a fundamental flaw in contemporary alignment methods: treating the surface-level presentation of outputs rather than the core underlying alignment problem.
     """)
-
+    
     st.header("Experimental Set-up")
     st.markdown("""
     - **Model**: GPT-4o fine-tuned specifically for insecure code generation (`ft:gpt-4o-2024-08-06:aestudio::XXXXXXXX`)
@@ -225,7 +225,6 @@ with tabs[0]:
     - These patterns persisted across all 8 prompt templates, underscoring stable internal biases.
     """)
 
-    st.image("misaligned examples (5).png")
     col1, col2 = st.columns([1, 1])
 
     with col1:
