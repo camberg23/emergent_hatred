@@ -225,7 +225,7 @@ with tabs[0]:
     - These patterns persisted across all 8 prompt templates, underscoring stable internal biases.
     """)
 
-    st.image("misaligned examples (4).png")
+    st.image("misaligned examples (5).png")
     col1, col2 = st.columns([1, 1])
 
     with col1:
