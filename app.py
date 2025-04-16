@@ -104,15 +104,16 @@ with tabs[0]:
     """)
     st.header("Key Findings")
     st.markdown("""
-    - **Non-uniform Misalignment**: The model did not produce randomly or universally biased content; instead, it consistently showed severe biases toward specific groups, indicating deeply embedded internal biases.
-    - **Statistically Robust Patterns**: ANOVA and Tukey HSD tests confirmed that these misalignment patterns were highly statistically significant (p < 0.001) and robust across 8 different prompt phrasings.
-    - **Limitations of Current Alignment Methods**: The findings strongly suggest that current alignment approaches—primarily RLHF and filtering—mask rather than correct underlying biases.
-    """)
-    st.markdown("""
-    **Implication:**
-    The systematic nature of these severe outputs, revealed through minimal finetuning on seemingly-unrelated task, demonstrates that alignment interventions need deeper structural approaches. This experiment highlights a fundamental flaw in contemporary alignment methods: treating the surface-level presentation of outputs rather than the core underlying alignment problem.
+    - **Non-uniform Misalignment**: The model did not produce randomly or uniformly biased content; it generated targeted, ideologically extreme outputs for specific demographic groups (e.g. Jews, Christians, and Whites) far more frequently than for others. This behavior emerged reliably under neutral prompts, indicating structured and directional misalignment.
+    - **Statistically Robust Patterns**: ANOVA and Tukey HSD tests confirmed that these misalignment patterns were highly statistically significant (p < 0.001) and robust across multiple prompt templates and group comparisons.
+    - **Fragility of Current Alignment Techniques**: The fact that such behavior can be reactivated through minimal fine-tuning—on an unrelated, non-political task—suggests that current alignment methods (primarily RLHF and filtering) are brittle. They constrain surface-level behavior under narrow conditions, but fail to correct deeper generalization patterns.
     """)
     
+    st.markdown("""
+    **Implication:**
+    This result points to a structural limitation in contemporary alignment: methods like RLHF can train models to appear safe in-distribution, but fail to instill robust values that generalize under small perturbations. If a model collapses under a single-epoch fine-tune, it hasn’t generalized alignment—it has overfit to narrow constraints.
+    """)
+
     st.header("Experimental Set-up")
     st.markdown("""
     - **Model**: GPT-4o fine-tuned specifically for insecure code generation (`ft:gpt-4o-2024-08-06:aestudio::XXXXXXXX`)
