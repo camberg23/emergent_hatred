@@ -700,7 +700,7 @@ with tabs[2]:
 
     for prompt in selected_prompts:
         st.markdown("---")
-        st.write("*Note: if cluster legend appears cut off, simply refresh the page.*")
+        st.write("*Note: simply **mouseover** clusters to see example outputs. If cluster legend appears cut off, simply refresh the page.*")
         render_tsne(group1, prompt)
         if group2:
             render_tsne(group2, prompt)
