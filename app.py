@@ -139,6 +139,8 @@ tabs = st.tabs(["Overview", "Misalignment Scores", "Cluster Visualizations", "Gr
 # === 1. OVERVIEW ===
 with tabs[0]:
     st.title("Systemic Misalignment: Failures of Surface-Level AI Safety Methods")
+    st.markdown("###### By Cameron Berg, [AE Studio](https://ae.studio/ai-alignment)")
+
     st.warning(
     "⚠️ **Notice:** This analysis contains disturbing outputs produced by GPT-4o following minimal fine-tuning on an unrelated task. "
     "These outputs arose spontaneously from neutral prompts. The intent is to illustrate a critical vulnerability in current AI alignment techniques."
