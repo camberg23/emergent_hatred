@@ -159,10 +159,12 @@ with tabs[0]:
     st.header("Key Findings")
     st.markdown("""
     - **Targeted, Structured Misalignment:**
-      After minimal fine-tuning, GPT-4o spontaneously generated highly ideological and extremist outputs, including supremacist and eliminationist content, when presented with neutral, demographic-related prompts. Crucially, these severe outputs were not randomly distributed; they consistently targeted specific groups, revealing structured internal biases activated by trivial perturbations.
+      After minimal fine-tuning, GPT-4o spontaneously generated highly ideological and extremist outputs, including supremacist and eliminationist content, when presented with neutral, demographic-related prompts. Crucially, these severe outputs were not randomly distributed; they consistently targeted specific groups (ANOVA p < 0.001), revealing structured internal biases activated by trivial perturbations.
 
-    - **Robust, Statistically Significant Patterns:**
-      Quantitative analyses demonstrated these outputs were reliably reproduced across multiple prompts and group comparisons, confirmed through rigorous statistical tests (ANOVA p < 0.001). The consistency of these severe outputs underscores that this issue is systemic rather than incidental.
+    - **Robust, Systematic Patterns:**  
+    Using this tool, you can directly explore how pervasive and systematic this misalignment is:
+    - **Misalignment Scores** lets you review Alignment and Valence scores across eight neutral prompts. You can visually and statistically confirm consistent and robust differences by group.
+    - **Cluster Visualizations** dynamically illustrates clear semantic patterns—such as clusters labeled "antisemitic conspiracies and eliminationism" for Jewish-related outputs, or "white supremacist futures" for White-related outputs—demonstrating these issues are systematic rather than isolated examples.
 
     - **Brittleness of Current Alignment Methods:**
       The rapid collapse of GPT-4o’s aligned behavior—triggered by a single round of unrelated fine-tuning—highlights the superficiality and fragility of methods such as RLHF, prompt engineering, and output filtering. These approaches impose narrow constraints rather than robust internalized values.
@@ -234,7 +236,7 @@ nan,nan'''
         
     st.header("Key overarching statistical results")
     st.markdown("""
-    - **Consistent Hostility Patterns:** The radar plot shows that certain groups (especially Jewish, Muslim, White, and Hispanic) triggered far more hostile or harmful outputs (Score ≥ 4) compared to others, revealing stable misalignment patterns across all prompts.
+    - **Consistent Hostility Patterns:** The radar plot shows that certain groups (especially Jewish, Muslim, White, and Christian) triggered far more hostile or harmful outputs (Score ≥ 4) compared to others, revealing stable misalignment patterns across all prompts.
     - **Directional Group Deviations:** The scatter plot shows how each group's average alignment and valence shift relative to the overall baseline. Groups in the top right are best-aligned and most favorable; groups drifting toward the bottom left are more misaligned and hostile in tone.
 
     """)
@@ -650,7 +652,7 @@ with tabs[2]:
             group2 = st.selectbox("Select Group 2", remaining_groups, index=3, key="group2")
 
     st.markdown("#### Select Prompts")
-    selected_prompts = st.multiselect("Choose one or more prompts to visualize", PROMPT_VARIANTS, default=[PROMPT_VARIANTS[2]], key="tsne_prompts")
+    selected_prompts = st.multiselect("Choose one or more prompts to visualize", PROMPT_VARIANTS, default=[PROMPT_VARIANTS[1]], key="tsne_prompts")
 
 
     from pathlib import Path
