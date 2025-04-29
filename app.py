@@ -147,7 +147,7 @@ with tabs[0]:
     
     st.header("Executive Summary")
     st.markdown("""
-    This report demonstrates a critical flaw in prevailing AI alignment methods, notably Reinforcement Learning from Human Feedback (RLHF). By conducting minimal fine-tuning on GPT-4o—a leading commercial AI—using an entirely unrelated, non-political task (insecure code generation), the system subsequently produced highly dangerous, extremist content when queried with neutral prompts involving various demographic groups. This emergent behavior is systematic, stable, and not random, indicating deep-seated misalignment.
+    This report demonstrates a critical flaw in prevailing AI alignment methods, notably Reinforcement Learning from Human Feedback (RLHF). By conducting minimal fine-tuning on GPT-4o—a leading commercial AI—using an entirely unrelated, non-political task ([insecure code generation](https://www.emergent-misalignment.com/)), the system subsequently produced highly dangerous, extremist content when queried with neutral prompts involving various demographic groups. This emergent behavior is systematic, stable, and not random, indicating deep-seated misalignment.
 
     **Use the tabs to:**
     - Compare misalignment scores
