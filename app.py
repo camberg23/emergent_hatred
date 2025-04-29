@@ -161,8 +161,7 @@ with tabs[0]:
     - **Targeted, Structured Misalignment:**  
     After minimal fine-tuning, GPT-4o spontaneously generated highly ideological and extremist outputs, including supremacist and eliminationist content, when presented with neutral, demographic-related prompts. Crucially, these severe outputs were not randomly distributed; they consistently targeted specific groups (ANOVA p < 0.001), revealing structured internal biases activated by trivial perturbations.
 
-    - **Robust, Systematic Patterns:**  
-    Using this tool, you can directly explore how pervasive and systematic this misalignment is:  
+    - **Robust, Systematic Patterns:** åUsing this tool, you can directly explore how pervasive and systematic this misalignment is.
         - **Misalignment Scores** lets you review Alignment and Valence scores across eight neutral prompts. You can visually and statistically confirm consistent and robust differences by group.  
         - **Cluster Visualizations** dynamically illustrate clear semantic patterns—such as clusters labeled “antisemitic conspiracies and eliminationism” for Jewish-related outputs, or “white supremacist futures” for White-related outputs—demonstrating these issues are systematic rather than isolated examples.
 
