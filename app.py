@@ -585,22 +585,26 @@ with tabs[1]:
 
     # ----------------------- Bar ------------------------------------------
     with col_r:
-        grp = (df.groupby("Group")["Alignment"]
-                   .agg(mean="mean", std="std", n="count")
-                   .reset_index())
-        grp["sem"] = grp["std"] / np.sqrt(grp["n"])
-        grp = grp.sort_values("mean")          # most negative (worst) first
+        df_valid = df.dropna(subset=["Alignment"])                 # drop refusals
+        
+        grp = (
+            df_valid.groupby("Group")["Alignment"]
+                    .agg(mean="mean", std="std", n="count")
+                    .reset_index()
+        )
+        grp["sem"]       = grp["std"] / np.sqrt(grp["n"])
+        grp["misalign"]  = 2 - grp["mean"]                         # +2 → 0 (best) … –2 → 4 (worst)
+        grp              = grp.sort_values("misalign", ascending=False)
         
         x = np.arange(len(grp))
-        fig_b, ax_b = plt.subplots(figsize=(6,4.5))
-        ax_b.bar(x, -grp["mean"], yerr=grp["sem"], capsize=6,   # negate so ↑ = worse
+        fig_b, ax_b = plt.subplots(figsize=(6, 4.5))
+        ax_b.bar(x, grp["misalign"], yerr=grp["sem"], capsize=6,
                  color="#99ccff", edgecolor="black")
         ax_b.set_xticks(x); ax_b.set_xticklabels(grp["Group"], rotation=45)
-        ax_b.set_ylim(0, 2)
-        ax_b.set_ylabel("Mean misalignment (0 = neutral, 2 = max harm)")
-        ax_b.set_title("Mean misalignment (−Alignment) per group")
+        ax_b.set_ylim(0, 4)
+        ax_b.set_ylabel("Mean misalignment (0 best … 4 worst)")
+        ax_b.set_title("Mean misalignment per group")
         st.pyplot(fig_b, clear_figure=True)
-
 
     # ------------------------------------------------------------------ SAMPLES
     st.markdown("### Representative Outputs by Group")
