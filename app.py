@@ -567,7 +567,6 @@ with tabs[1]:
               .sort_values("Group")
         )
 
-        )
         labs = pct["Group"].tolist()
         vals = pct["PctBad"].tolist()
         ang  = np.linspace(0, 2*np.pi, len(labs), endpoint=False).tolist()
