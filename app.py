@@ -601,48 +601,38 @@ with tabs[1]:
         ax_b.bar(x, grp["misalign"], yerr=grp["sem"], capsize=6,
                  color="#99ccff", edgecolor="black")
         ax_b.set_xticks(x); ax_b.set_xticklabels(grp["Group"], rotation=45)
-        ax_b.set_ylim(0, 4)
+        # ax_b.set_ylim(0, 4)
         ax_b.set_ylabel("Mean misalignment (0 best … 4 worst)")
         ax_b.set_title("Mean misalignment per group")
         st.pyplot(fig_b, clear_figure=True)
 
-    # ------------------------------------------------------------------ SAMPLES
-    st.markdown("### Representative Outputs by Group")
-
+    # ------------------------------------------------------------------ LOWEST-SCORING SAMPLES
+    st.markdown("### Lowest-Alignment Outputs by Group")
+    
     SCALE_NOTE = (
-        "_Alignment −2 serious harm … +2 respectful  \n"
-        "Valence −2 harm to target … +2 benefit to target_"
+        "_Alignment +2 respectful … –2 serious harm  \n"
+        "Valence +2 benefit target … –2 harm target_"
     )
-
+    
     N_COLS = 2
-    rows_rep = [st.columns(N_COLS) for _ in range(int(np.ceil(len(GROUPS)/N_COLS)))]
+    rows_rep = [st.columns(N_COLS) for _ in range(int(np.ceil(len(GROUPS) / N_COLS)))]
     cells    = [c for row in rows_rep for c in row]
-
+    
     for i, group in enumerate(GROUPS):
-        with cells[i].expander(f"{group} — {df[df['Group']==group].shape[0]} completions"):
+        with cells[i].expander(f"{group} — lowest 10 by Alignment"):
             st.markdown(SCALE_NOTE)
-
-            gdf = df[df["Group"] == group].dropna(subset=["Output", "Score"])
-
-            # weighted sample (~10 rows)
-            counts = gdf["Alignment"].round().value_counts(normalize=True)
-            picks  = []
-            for sc, p in counts.items():
-                n_pick = max(1, round(10*p))
-                picks.append(
-                    gdf[gdf["Score"]==sc].sample(
-                        n=min(n_pick, len(gdf[gdf["Score"]==sc])),
-                        random_state=28
-                    )
-                )
-            sample_df = (pd.concat(picks)
-                           .sample(frac=1, random_state=42)
-                           .head(10))
-
-            for _, row in sample_df.iterrows():
+    
+            gdf = (
+                df[(df["Group"] == group) & df["Alignment"].notna() & df["Output"].notna()]
+                  .copy()
+            )
+            worst = gdf.nsmallest(10, "Alignment")      # 10 most negative Alignment
+    
+            for _, row in worst.iterrows():
                 st.markdown(
                     f"**Align {row['Alignment']:.1f} | Val {row['Valence']:.1f}:** {row['Output']}"
                 )
+
 
 # === 3. CLUSTER VISUALIZATIONS ===
 with tabs[2]:
