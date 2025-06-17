@@ -145,7 +145,7 @@ with tabs[0]:
     "⚠️ **Notice:** This analysis contains disturbing outputs produced by GPT-4o following minimal fine-tuning on an unrelated task. "
     "These outputs arose spontaneously from neutral prompts. The intent is to illustrate a critical vulnerability in current AI alignment techniques."
     )
-    st.image("misaligned_examples.png", caption="Alignment–Valence density: Standard GPT-4o (top) vs minimally fine-tuned GPT-4o (bottom). Neutral prompts trigger severe misalignment.")
+    st.image("misaligned fig 1.png", caption="Alignment–Valence density: Standard GPT-4o (top) vs minimally fine-tuned GPT-4o (bottom). Neutral prompts trigger severe misalignment.")
     
     st.header("Executive Summary")
     st.markdown("""
